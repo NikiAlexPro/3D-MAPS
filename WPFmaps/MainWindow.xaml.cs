@@ -213,20 +213,26 @@ namespace WPFmaps
             
             bool fileStatus = true;
             string filePath = null;
+            Stopwatch sw = new Stopwatch();
+            
             foreach (var filename in loseSRTMdata)
             {
+                sw.Start();
                 WindowProgressDownload windowProgressDownload = new WindowProgressDownload();
                 windowProgressDownload.textblockfilename.Text = "Загрузка файла: " + filename + " // " + (loseSRTMdata.IndexOf(filename) + 1) + " из " + loseSRTMdata.Count;
+                
                 filePath = Path.Combine(dataDirectory, filename);
                 WebClient webClient = new WebClient();
                 webClient.DownloadProgressChanged += (s, e) =>
                 {
                     windowProgressDownload.progressBar.Value = e.ProgressPercentage;
+                    windowProgressDownload.textblockSpeedByteRecived.Text = "Скорость загрузки: " + ((Convert.ToDouble(e.BytesReceived) / 1024) / sw.Elapsed.TotalSeconds).ToString("0.00") + " КБ/с" + " // " + " Размер файла: " + (Convert.ToDouble(e.BytesReceived) / 1024 / 1024).ToString("0.00") + " МБ" + "  /  " + (Convert.ToDouble(e.TotalBytesToReceive) / 1024 / 1024).ToString("0.00") + " МБ";
                 };
                 webClient.DownloadFileCompleted += (s, e) =>
                 {
                     if(e.Error == null)
                     {
+                        sw.Stop();
                         windowProgressDownload.Close();
 
                     }
