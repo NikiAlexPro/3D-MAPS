@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFmaps"
         mc:Ignorable="d"
-        Title="WindowProgressDownload" Height="150" Width="600" WindowStartupLocation="CenterScreen">
+        Title="WindowProgressDownload" Height="150" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <ProgressBar x:Name="progressBar" Height="40"/>
         <TextBlock x:Name="textblockfilename" Text="Загрузка файла: " FontSize="15" Margin="3"/>

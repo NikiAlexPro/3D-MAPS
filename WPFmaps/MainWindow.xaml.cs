@@ -152,14 +152,9 @@ namespace WPFmaps
 
             if (visualChild.Content != null)
             {
-                MessageBox.Show("Есть данные");
                 visualChild.Content = null;
-
                 imagePrevious = imageMapName;
-
             }
-            else
-                MessageBox.Show("Нет данных");
 
             await DownloadTextureFile(mapArea, bingMapsAPIKey);
             absentSRTMdata = CheckSRTMdata.FindLoseSRTMdata(startCoordinatePositionY, startCoordinatePositionX, endCoordinatePositionY, endCoordinatePositionX);
